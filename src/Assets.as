@@ -17,6 +17,9 @@ package
 		
 		[Embed(source="../media/graphics/bgLayer1.jpg")]
 		public static const BgLayer1:Class;
+		
+		[Embed(source="../media/graphics/welcome_backButton.png")]
+		public static const WelcomeBackBtn:Class;
 
 		private static var gameTextures:Dictionary = new Dictionary();
 		private static var gameTextureAtlas:TextureAtlas;

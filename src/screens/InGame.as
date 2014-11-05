@@ -143,6 +143,7 @@ package screens
 		
 		private function launchHero():void
 		{
+			particle.start();
 			this.addEventListener(TouchEvent.TOUCH, onTouch);
 			this.addEventListener(Event.ENTER_FRAME, onGameTick);
 		}
@@ -157,6 +158,9 @@ package screens
 		
 		private function onGameTick(event:Event):void
 		{
+			particle.x = hero.x + 60;
+			particle.y = hero.y;
+			
 			switch(gameState)
 			{
 				case "idle":
