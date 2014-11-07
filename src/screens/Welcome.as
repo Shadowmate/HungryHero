@@ -17,6 +17,8 @@ package screens
 		
 		private var playBtn:Button;
 		private var aboutBtn:Button;
+		private var aboutButton:Button;
+		private var backBtn:Button;
 		
 		public function Welcome()
 		{
@@ -57,6 +59,7 @@ package screens
 			this.addChild(aboutBtn);
 			
 			this.addEventListener(Event.TRIGGERED, onMainMenuClick);
+			this.addEventListener(Event.TRIGGERED, onMainMenuClick1);
 		}
 		
 		private function onMainMenuClick(event:Event):void
@@ -92,6 +95,42 @@ package screens
 			hero.y = 100 + (Math.cos(currentDate.getTime() * 0.002) * 25);
 			playBtn.y = 260 + (Math.cos(currentDate.getTime() * 0.002) * 10);
 			aboutBtn.y = 380 + (Math.cos(currentDate.getTime() * 0.002) * 10);
+		}
+		private function onMainMenuClick1(event:Event):void
+		{
+			var buttonClicked:Button = event.target as Button;
+			if((buttonClicked as Button) == aboutBtn)
+			{
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, {id: "about"}, true));
+			}
+		}
+		private function onAboutClick(event:Event):void
+		{
+			var buttonClicked:Button = event.target as Button;
+			if((buttonClicked as Button) == backBtn)
+			{
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, {id: "play"}, true));
+			}
+		}
+		public function disposeTemporarily1():void
+		{
+			this.visible = false;
+		}
+		
+		public function initialize1():void
+		{
+			this.visible =true;
+			
+			
+			
+			this.addEventListener(Event.ENTER_FRAME, onAboutButtonClick);
+		}
+		private function onAboutButtonClick(event:Event):void
+		{
+			aboutButton.visible = false;
+			aboutButton.removeEventListener(Event.TRIGGERED, onAboutButtonClick);
+			
+			
 		}
 	}
 }

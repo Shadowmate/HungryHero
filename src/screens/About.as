@@ -1,6 +1,5 @@
 package screens
 {
-	import starling.display.Sprite;
 	import events.NavigationEvent;
 	
 	import starling.display.Button;
@@ -12,8 +11,12 @@ package screens
 	{
 		private var bg:Image;
 		private var title:Image;
-		
+		private var starlingLogo:Button;
 		private var backBtn:Button;
+		private var hsharmaLogo:Button;
+		private var aboutText:Image;
+		private var aboutButton:Button;
+		private var backButton:Button;
 		
 		public function About()
 		{
@@ -39,24 +42,45 @@ package screens
 			title.y = 20;
 			this.addChild(title);
 			
-			
-			backBtn = new Button(Assets.getTexture("WelcomeBackBtn"));
+			backBtn = new Button(Assets.getAtlas().getTexture("about_backButton"));
 			backBtn.x = 500;
 			backBtn.y = 300;
-			backBtn.height = 60;
-			backBtn.width = 100;
 			this.addChild(backBtn);
 			
-			this.addEventListener(Event.TRIGGERED, onAboutClick);
+			hsharmaLogo = new Button(Assets.getAtlas().getTexture("about_hsharmaLogo"));
+			hsharmaLogo.x = 10;
+			hsharmaLogo.y = 480;
+			this.addChild(hsharmaLogo);
+			
+			starlingLogo = new Button(Assets.getAtlas().getTexture("about_starlingLogo"));
+			starlingLogo.x = 230;
+			starlingLogo.y = 480;
+			this.addChild(starlingLogo);
+			
+			aboutText = new Image(Assets.getTexture("AboutText"));
+			aboutText.x = 10;
+			aboutText.y = 120;
+			this.addChild(aboutText);
+			
+			this.addEventListener(Event.TRIGGERED, onBackClick);
+		}
+		public function disposeTemporarily():void
+		{
+			this.visible = false;
 		}
 		
-		private function onAboutClick(event:Event):void
+		public function initialize():void
+		{
+			this.visible =true;
+		}
+
+		private function onBackClick(event:Event):void
 		{
 			var buttonClicked:Button = event.target as Button;
 			if((buttonClicked as Button) == backBtn)
 			{
-				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, {id: "play"}, true));
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, {id: "menu"}, true));
 			}
-		}
+		}	
 	}
 }
